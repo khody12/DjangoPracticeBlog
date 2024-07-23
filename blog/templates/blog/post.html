@@ -1,8 +1,15 @@
 {%extends "base.html"%}
 
+
 {%block page_title%} {{name}} {% endblock %}
 
 {%block content%}
+  {%include "blog/includes/header.html"%}
+  <h1> {{name}}
+    <h6>
+        {{heading}}
+    </h6>
+    
 
 
 {% endblock %}

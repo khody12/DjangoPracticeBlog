@@ -1,4 +1,4 @@
-{%load static %}
+{%load static%}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,8 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block page_title %} default_title {% endblock %}</title>
-    <!--<link rel="stylesheet" href="{% static "styles.css" %}">-->
+    <link rel="stylesheet" href="{% static "styles.css" %}"> <!-- This right here links this base html to our porject wide css file which will apply to all templates-->
     {% block css_files %}{% endblock %}
+   
 </head>
 <body>
     {% block content %}

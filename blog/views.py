@@ -10,13 +10,14 @@ list_of_posts = [
 latest_posts = list_of_posts
 
 
-for post in list_of_posts:
+for post in list_of_posts: # i am using the names in the dictionary here as the urls for our posts, but i have to slugify them with dashes "-" between the words. in a bigger program this would be a function.
     url = slugify(post["name"])
     post["slug"] = url
 
 context = {
     "posts": latest_posts,
-} # because render requires a dictionary to be passed in, we first have to make a dictionary with a key being how we access the list within the html. 
+} 
+# because render requires a dictionary to be passed in, we first have to make a dictionary with a key being how we access the list within the html. 
 
 
 def index(request):
@@ -24,7 +25,8 @@ def index(request):
 
 def posts(request):
     
-    return render(request, "blog/posts.html", context)
+    
+    return render(request, "blog/posts.html", {"posts": list_of_posts})
 
 def post(request, post):
     
@@ -32,13 +34,6 @@ def post(request, post):
         if post == dictionary["slug"]:
             postDictionary = dictionary
     return render(request, "blog/post.html", postDictionary)
-
-
-
-
-    
-
-    return HttpResponse("Individual blog post works as well!")
 
 
 # Create your views here.
