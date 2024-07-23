@@ -1,0 +1,25 @@
+{% extends "base.html"%}
+
+{% block page_title%}
+  Eric's blog!
+{% endblock %}
+
+{% block content %}
+{%include "blog/includes/header.html"%}
+  <h1>Eric's blog!</h1>
+  <ul>
+  {%for post in posts%}
+  <a href = "{% url "post" post.slug %}">     
+    <div>
+      <h2>
+        {{post.name}} <!--This dot notation is not the typical way to access dictionary values, but the DTL makes it possible. it could be post["name"]-->
+      </h2>
+      <p>{{post.heading}}</p>
+      
+    </div>
+  </a> 
+  
+  {%endfor%}
+  </ul>
+  
+{% endblock %}

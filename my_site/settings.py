@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'blog', # THIS IS CRITICAL <------------------- We need to have our templates be loaded, and installing the app is essential for this to work. 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,7 +55,10 @@ ROOT_URLCONF = 'my_site.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / "templates" # this is in order to make the base template work. because django by default just looks within the apps for templates, 
+            #but since im extending my templates from base.html, i have to include this. 
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
