@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.utils.text import slugify 
 from datetime import date
 
-from models import Author, Post, Tag
+from .models import Author, Post, Tag
 
 list_of_posts = [
   {"name": "Mountain Hiking", "heading":"There's nothing like the views you get when hiking in the mountains", "story":"When i was hiking i saw all sorts of animals and plants", "date":date(2021,7,21), "image": "woods.jpg"},
@@ -14,6 +14,8 @@ latest_posts = list_of_posts
 
 def get_date(post):
     return post['date']
+
+listOfPosts = Post.objects.all()
 
 
 
@@ -30,7 +32,7 @@ context = {
 def index(request):
     sorted_posts = sorted(list_of_posts, key=get_date)
     latest_posts = sorted_posts[-3:]
-    return render(request, "blog/index.html", {"posts":latest_posts})
+    return render(request, "blog/index.html", {"posts":listOfPosts})
 
 def posts(request):
     

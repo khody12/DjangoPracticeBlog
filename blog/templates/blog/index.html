@@ -33,12 +33,12 @@
       <li>
         <article class="post">
           <a href = "{% url "post" post.slug %}"> 
-            <img src="{% static "blog/images/"|add:post.image%}" alt ="Mountain Hiking"/>
+            <img src="{% static "blog/images/"|add:post.image_name%}" alt ="Mountain Hiking"/>
             <div class="post_content">
               <h3>
-                {{post.name}} <!--This dot notation is not the typical way to access dictionary values, but the DTL makes it possible. it could be post["name"]-->
+                {{post.title}} <!--This dot notation is not the typical way to access dictionary values, but the DTL makes it possible. it could be post["name"]-->
               </h3>
-              <p>{{post.heading}}</p>
+              <p>{{post.excerpt}}</p>
             </div>
           </a>
         </article>
