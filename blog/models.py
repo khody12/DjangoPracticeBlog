@@ -1,3 +1,34 @@
 from django.db import models
 
 # Create your models here.
+class Tag(models.Model):
+    caption = models.CharField(max_length=50)
+    def __str__(self):
+        return f"{self.caption}"
+class Author(models.Model):
+    first_name = models.CharField(max_length=25)
+    last_name = models.CharField(max_length=25)
+    email = models.EmailField(max_length=50)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    Excerpt = models.CharField(max_length=500)
+    Image_Name = models.CharField(max_length=100)
+    Date = models.DateField()
+    Slug = models.SlugField()
+
+    content = models.CharField(max_length=10000)
+
+    caption = models.ManyToManyField(Tag)
+
+    
+
+    author = models.ForeignKey(Author, on_delete=models.CASCADE,related_name="posts")
+
+    def __str__(self):
+        return f"{self.title} {self.author}"
+
+    pass

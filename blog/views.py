@@ -13,7 +13,6 @@ latest_posts = list_of_posts
 def get_date(post):
     return post['date']
 
-    
 
 
 for post in list_of_posts: # i am using the names in the dictionary here as the urls for our posts, but i have to slugify them with dashes "-" between the words. in a bigger program this would be a function.
