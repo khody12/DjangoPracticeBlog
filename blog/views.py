@@ -27,7 +27,10 @@ def post(request, postName):
 
     post = list_of_posts.get(slug=postName)
 
-    return render(request, "blog/post.html", {"post":post})
+    return render(request, "blog/post.html", {
+        "post":post,
+        "post_tags": post.caption.all()
+        })
 
 
 # Create your views here.
