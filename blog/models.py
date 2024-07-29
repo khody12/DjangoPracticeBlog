@@ -20,7 +20,7 @@ class Post(models.Model):
     date = models.DateField()
     slug = models.SlugField(default="",null=False,db_index=True)
 
-    content = models.CharField(max_length=10000)
+    content = models.TextField(max_length=10000)
 
     caption = models.ManyToManyField(Tag)
 
