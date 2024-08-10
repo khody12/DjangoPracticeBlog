@@ -45,6 +45,33 @@
 
   </main>
 
+  <section id="comment-section">
+    <form method="POST" action="{%url "post" post.slug %}">
+      {% csrf_token %}
+      {% for field in form %}
+        <div class="form-control {% if field.errors %} errors {% endif %}">
+          {{field.label_tag}}
+          {{field}}
+          {{field.errors}}
+        </div>
+        
+        {% endfor %}
+        <button type="submit">Send</button>
+    </form>
+
+  </section>
+
+  <section id="all-comments">
+    <h4>Comments:</h4>
+    <ul>
+    {% for comment in post.all_comments.all %}
+      <div class="comment-div"><li>{{comment.comment}}</li></div>
+    {% endfor %}
+    </ul>
+    
+      
+  </section>
+
   
     
 
