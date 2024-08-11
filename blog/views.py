@@ -5,8 +5,9 @@ from datetime import date
 
 from .models import Author, Post, Tag, Comment
 from .forms import CommentForm
-
+from django.views import View
 from django.views.generic import DetailView, ListView
+
 
 
 
@@ -64,6 +65,10 @@ class SinglePostView(DetailView):
 
             return redirect("post", self.object.slug) # redirect works by taking the name from the urls.py of the template we want to navigate to, and then
              # we pass in the slug ourselves, because we have access to our own object. 
+
+class ReadLater(View):
+    pass
+
         
     
 
