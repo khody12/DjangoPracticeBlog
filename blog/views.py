@@ -16,18 +16,32 @@ list_of_posts = Post.objects.all()
 # because render requires a dictionary to be passed in, we first have to make a dictionary with a key being how we access the list within the html. 
 
 
+class IndexView(ListView):
+    template_name = "blog/index.html"
+    model = Post
+    context_object_name = "posts"
+
+    def get_queryset(self, **kwargs):
+        base_query = super().get_queryset()
+        data = base_query.order_by("-date")[:3]
+        return data
 
 
-def index(request):
-    latest_posts = Post.objects.all().order_by("-date")[:3] # this gets the 3 most recent posts, and also
-    latest_posts = Post.objects.all().filter()
+# def index(request):
+#     latest_posts = Post.objects.all().order_by("-date")[:3] # this gets the 3 most recent posts, and also
+#     latest_posts = Post.objects.all().filter()
 
     
-    return render(request, "blog/index.html", {"posts":latest_posts})
+#     return render(request, "blog/index.html", {"posts":latest_posts})
+class PostsView(ListView):
+    template_name = "blog/posts.html"
+    model = Post
+    context_object_name = "posts"
 
-def posts(request):
+
+# def posts(request):
     
-    return render(request, "blog/posts.html", {"posts": list_of_posts})
+#     return render(request, "blog/posts.html", {"posts": list_of_posts})
 
 
 class SinglePostView(DetailView):
