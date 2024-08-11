@@ -12,7 +12,8 @@
 <header id="main-navigation">
   <h1><a href="{% url "index" %}">Eric's Blog</a></h1>
   <nav>
-    <a href="{% url "posts" %}">All Posts</a>
+    <a href="{% url "posts" %}" style="margin:10px;">All Posts</a>
+    <a href="{% url "read-later" %}" style="margin:10px;">Read Later</a>
   </nav>
 </header>
 
@@ -22,8 +23,15 @@
       {%for tag in post_tags %}
         <span class = "tag">{{tag.caption}}</span>
       {%endfor%}
-
     </div>
+    <div class="read-later">
+      <form action="{% url "read-later" %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="post_id" value="{{post.id}}">
+        <button type="submit">Read Later</button>
+      </form>
+    </div>
+
     <article>
       <img src="{% static "blog/images/"|add:post.image_name %}" alt ="Post Title" />
       <address>By <a href="mailto: {{post.author.email_address}}">{{post.author}}</a></address>
